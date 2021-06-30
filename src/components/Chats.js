@@ -1,16 +1,24 @@
-import React from 'react'
+import React, {useRef, useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { ChatEngine } from 'react-chat-engine'
 import { auth } from '../firebase'
 
+import { useAuth } from '../contexts/AuthContext'
+
 const Chats = () => {
 
   const history = useHistory()
+  const { user } = useAuth();
+
+  console.log(user)
+
 
   const handleLogout = async() => {
     await auth.signOut()
     history.push('/')
   }
+
+
 
   return (
     <div className="chats-page">
